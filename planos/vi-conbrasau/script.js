@@ -1,6 +1,6 @@
         // Countdown Timer
         function startCountdown() {
-            const countdownDate = new Date().getTime() + (42 * 24 * 60 * 60 * 1000); // 42 days from now
+            const countdownDate = new Date().getTime() + (23 * 24 * 60 * 60 * 1000); // 23 days from now
             
             const timer = setInterval(function() {
                 const now = new Date().getTime();
