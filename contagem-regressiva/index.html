@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossas Férias</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+    }
+
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes scale-in {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slide-up {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .animated-bg {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .float-animation:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .float-animation:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    .timer-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: pulse-glow 2s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .timer-box:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .image-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: scale-in 0.6s ease-out;
+    }
+
+    .image-card:hover {
+      transform: translateY(-10px) rotate(2deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .title-animation {
+      animation: slide-up 1s ease-out;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle-animation 2s ease-in-out infinite;
+    }
+
+    @keyframes sparkle-animation {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    .countdown-number {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body class="animated-bg min-h-screen flex flex-col items-center justify-center text-white overflow-x-hidden">
+
+  <div class="container mx-auto p-4 relative">
+    <!-- Decorative sparkles -->
+    <div class="sparkle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 30%; right: 15%; animation-delay: 0.5s;"></div>
+    <div class="sparkle" style="bottom: 20%; left: 30%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top: 50%; right: 25%; animation-delay: 1.5s;"></div>
+
+    <!-- Section Header -->
+    <div class="text-center mb-12 title-animation">
+      <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
+        🌴 <span id="main-title">Férias!!!</span> 🌴
+      </h1>
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-100 font-light">A contagem regressiva para o descanso merecido começou!</p>
+    </div>
+
+    <!-- Images Section -->
+    <div class="flex flex-wrap justify-center gap-6 mb-16">
+      <img src="assets/Eventos IME.png" alt="Evento IME" class="w-36 sm:w-48 md:w-64 rounded-2xl shadow-2xl float-animation image-card">
+      <img src="assets/ferias.webp" alt="Férias" class="w-36 sm:w-48 md:w-64 rounded-2xl shadow-2xl float-animation image-card">
+      <img src="assets/VASP-sombreada.png" alt="Promoção" class="w-36 sm:w-48 md:w-64 rounded-2xl shadow-2xl float-animation image-card">
+    </div>
+
+    <!-- Countdown Timer -->
+    <div id="clockdiv" class="flex flex-wrap justify-center gap-6 md:gap-10">
+      <div class="timer-box rounded-3xl p-6 md:p-10 min-w-[120px] md:min-w-[160px]">
+        <span id="day" class="countdown-number block text-5xl sm:text-6xl md:text-7xl font-black mb-2">0</span>
+        <span class="text-sm sm:text-base md:text-lg uppercase tracking-widest font-semibold">Dias</span>
+      </div>
+      <div class="timer-box rounded-3xl p-6 md:p-10 min-w-[120px] md:min-w-[160px]">
+        <span id="hour" class="countdown-number block text-5xl sm:text-6xl md:text-7xl font-black mb-2">0</span>
+        <span class="text-sm sm:text-base md:text-lg uppercase tracking-widest font-semibold">Horas</span>
+      </div>
+      <div class="timer-box rounded-3xl p-6 md:p-10 min-w-[120px] md:min-w-[160px]">
+        <span id="minute" class="countdown-number block text-5xl sm:text-6xl md:text-7xl font-black mb-2">0</span>
+        <span class="text-sm sm:text-base md:text-lg uppercase tracking-widest font-semibold">Minutos</span>
+      </div>
+      <div class="timer-box rounded-3xl p-6 md:p-10 min-w-[120px] md:min-w-[160px]">
+        <span id="second" class="countdown-number block text-5xl sm:text-6xl md:text-7xl font-black mb-2">0</span>
+        <span class="text-sm sm:text-base md:text-lg uppercase tracking-widest font-semibold">Segundos</span>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="mt-12 max-w-2xl mx-auto">
+      <div class="glass-effect rounded-full h-4 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 transition-all duration-1000" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-16 mb-6 text-center glass-effect rounded-2xl px-8 py-4 mx-4">
+    <p class="text-sm md:text-base text-gray-200">&copy; 2024 Nossas Férias. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
